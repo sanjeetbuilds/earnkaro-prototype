@@ -142,15 +142,15 @@ export default function Page() {
       home: <RameshHome />,
       discovery: <RameshDiscovery />,
       share: <RameshShare />,
-      reports: <ComingSoon label="Reports — out of scope for this prototype" />,
-      profile: <ComingSoon label="Profile — out of scope for this prototype" />,
+      reports: <ComingSoon label="Reports" />,
+      profile: <ComingSoon label="Profile" />,
     },
     monika: {
       home: <MonikaHome />,
       discovery: <MonikaDiscovery />,
       share: <MonikaShare />,
-      reports: <ComingSoon label="Reports — out of scope for this prototype" />,
-      profile: <ComingSoon label="Profile — out of scope for this prototype" />,
+      reports: <ComingSoon label="Reports" />,
+      profile: <ComingSoon label="Profile" />,
     },
   };
 
@@ -183,10 +183,14 @@ export default function Page() {
 
 function ComingSoon({ label }: { label: string }) {
   return (
-    <div className="p-8 text-center text-slate-400 text-sm">
-      <div className="mt-32">{label}</div>
-      <div className="text-xs mt-2">
-        The assignment scope is home, discovery, and sharing.
+    <div className="p-8 text-center">
+      <div className="mt-24">
+        <div className="text-5xl mb-4">🚧</div>
+        <div className="text-base font-bold text-slate-700">{label}</div>
+        <div className="text-xs text-slate-500 mt-2 leading-relaxed max-w-xs mx-auto">
+          Not built for this prototype. The assignment scope is home, discovery, and sharing.
+          Reports and Profile changes are referenced in the written submission.
+        </div>
       </div>
     </div>
   );
