@@ -260,8 +260,10 @@ export default function Page() {
         personaLabel={`${personas[persona].name} · ${personas[persona].segment}`}
         onSwitchPersona={() => setPersona(persona === 'ramesh' ? 'monika' : 'ramesh')}
       >
-        <div className="relative h-full">
-          <div className="pb-20">{screens[persona][tab]}</div>
+        <div className="flex flex-col h-full relative">
+          <div className="flex-1 overflow-y-auto pb-20">
+            {screens[persona][tab]}
+          </div>
           <BottomNav active={tab} onChange={setTab} />
         </div>
       </PhoneFrame>

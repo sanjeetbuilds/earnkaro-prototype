@@ -41,15 +41,11 @@ export default function BottomNav({ active, onChange }: Props) {
   };
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-slate-100 flex items-center px-2 pt-1 pb-2">
+    <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-slate-100 flex items-center px-2 pt-1 pb-2 z-30">
       <Item tab="home" icon={Home} label="Home" />
       <Item tab="discovery" icon={ShoppingBag} label="Partners" />
 
-      {/* Center floating button */}
-      <button
-        onClick={() => onChange('share')}
-        className="relative -mt-6 mx-2"
-      >
+      <button onClick={() => onChange('share')} className="relative -mt-6 mx-2">
         <div className="w-14 h-14 bg-[#1AB266] rounded-full flex items-center justify-center shadow-lg">
           <Link2 className="w-6 h-6 text-white" strokeWidth={2.5} />
         </div>
