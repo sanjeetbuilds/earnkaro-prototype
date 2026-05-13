@@ -25,7 +25,6 @@ export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
   // Shows commission %, saturation, freshness inline. Compact.
   if (variant === 'operator') {
     const isFresh = deal.postedMinutesAgo < 30;
-    const isSaturated = deal.saturationCount > 20;
 
     return (
       <div className="bg-white border border-slate-200 rounded-xl p-3 flex gap-3 hover:border-slate-300 transition-colors">
@@ -46,7 +45,6 @@ export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
             <h3 className="text-sm font-semibold text-slate-900 line-clamp-2 flex-1">
               {deal.title}
             </h3>
-            {/* Commission % badge — the operator's primary signal */}
             <div className="bg-[#1AB266] text-white text-xs font-bold px-2 py-1 rounded whitespace-nowrap">
               {deal.profitPct}%
             </div>
@@ -60,39 +58,50 @@ export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
             </span>
           </div>
 
-          {/* Operator signals row */}
-          <div className="flex items-center gap-2 mt-2 flex-wrap">
+          {/* Operator signals — REWRITTEN with interpretive labels */}
+          <div className="flex items-center gap-1.5 mt-2 flex-wrap">
             <span
-              className={`text-[10px] px-1.5 py-0.5 rounded font-medium flex items-center gap-1 ${
+              className={`text-[10px] px-1.5 py-0.5 rounded font-semibold flex items-center gap-1 ${
                 isFresh
-                  ? 'bg-emerald-50 text-emerald-700'
+                  ? 'bg-amber-50 text-amber-800 border border-amber-200'
                   : 'bg-slate-50 text-slate-500'
               }`}
             >
-              <Clock className="w-2.5 h-2.5" />
-              {deal.postedMinutesAgo < 60
+              {isFresh ? '🔥' : <Clock className="w-2.5 h-2.5" />}
+              {isFresh
+                ? `Just dropped · ${deal.postedMinutesAgo}m`
+                : deal.postedMinutesAgo < 60
                 ? `${deal.postedMinutesAgo}m ago`
                 : `${Math.floor(deal.postedMinutesAgo / 60)}h ago`}
             </span>
             <span
-              className={`text-[10px] px-1.5 py-0.5 rounded font-medium flex items-center gap-1 ${
-                isSaturated
-                  ? 'bg-amber-50 text-amber-700'
-                  : 'bg-slate-50 text-slate-600'
+              className={`text-[10px] px-1.5 py-0.5 rounded font-semibold flex items-center gap-1 ${
+                deal.saturationCount <= 5
+                  ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                  : deal.saturationCount <= 20
+                  ? 'bg-slate-50 text-slate-600'
+                  : 'bg-rose-50 text-rose-800 border border-rose-200'
               }`}
             >
               <Users className="w-2.5 h-2.5" />
-              {deal.saturationCount} shared
+              {deal.saturationCount <= 5
+                ? `Be first · ${deal.saturationCount} shared`
+                : deal.saturationCount <= 20
+                ? `${deal.saturationCount} shared`
+                : `Saturated · ${deal.saturationCount} shared`}
             </span>
           </div>
 
-          {/* Compact action row */}
+          {/* Channel-aware share — defaults to user's primary, but flexible */}
           <button
             onClick={onShare}
-            className="w-full mt-2 bg-slate-900 text-white text-xs font-semibold py-1.5 rounded-md flex items-center justify-center gap-1"
+            className="w-full mt-2 bg-slate-900 text-white text-xs font-semibold py-1.5 rounded-md flex items-center justify-center gap-1.5"
           >
             <Share2 className="w-3 h-3" />
-            Generate & post to Telegram
+            Generate & share
+            <span className="text-[10px] text-slate-400 font-normal">
+              → Telegram
+            </span>
           </button>
         </div>
       </div>

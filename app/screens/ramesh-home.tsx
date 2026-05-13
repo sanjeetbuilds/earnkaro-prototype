@@ -27,7 +27,7 @@ export default function RameshHome() {
     <div>
       <TopBar variant="brand" walletBalance={persona.walletBalance} />
 
-      {/* "What's new since you last opened" — the operator's killer feature */}
+      {/* "What's new" banner */}
       <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-b border-amber-100 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center">
@@ -35,10 +35,10 @@ export default function RameshHome() {
           </div>
           <div>
             <div className="text-sm font-semibold text-slate-900">
-              {newDealsCount} new deals since 2 hrs ago
+              {newDealsCount} new since you last opened
             </div>
             <div className="text-[11px] text-slate-600">
-              3 in Household · low saturation
+              3 in Household · barely shared yet
             </div>
           </div>
         </div>
@@ -47,7 +47,7 @@ export default function RameshHome() {
         </button>
       </div>
 
-      {/* Pinned categories — Ramesh's specialization */}
+      {/* Pinned categories */}
       <div className="px-4 py-3 border-b border-slate-100">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1.5">
@@ -85,32 +85,33 @@ export default function RameshHome() {
         </div>
       </div>
 
-      {/* Sort/filter bar */}
-      <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-[11px]">
+      {/* Sort/filter bar — REWRITTEN with user-friendly labels */}
+      <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between gap-2">
+        <button className="flex items-center gap-1 text-[11px] flex-shrink-0">
           <span className="text-slate-500">Sorted by</span>
-          <button className="font-semibold text-slate-900 flex items-center gap-1">
-            Commission × Freshness ▾
+          <span className="font-bold text-slate-900">Best for you ▾</span>
+        </button>
+        <div className="flex items-center gap-1.5 overflow-x-auto">
+          <button className="text-[11px] bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-1 font-semibold text-emerald-800 whitespace-nowrap flex items-center gap-1">
+            💰 8%+ only
           </button>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <button className="text-[11px] bg-white border border-slate-200 rounded-full px-2.5 py-1 font-medium text-slate-700">
-            Min 8%
-          </button>
-          <button className="text-[11px] bg-white border border-slate-200 rounded-full px-2.5 py-1 font-medium text-slate-700">
-            &lt; 1h
+          <button className="text-[11px] bg-amber-50 border border-amber-200 rounded-full px-2.5 py-1 font-semibold text-amber-800 whitespace-nowrap flex items-center gap-1">
+            🔥 Fresh
           </button>
         </div>
       </div>
 
       {/* Bulk select bar — sticky when items selected */}
       {selected.size > 0 && (
-        <div className="sticky top-0 z-40 bg-slate-900 text-white px-4 py-2.5 flex items-center justify-between">
-          <div className="text-sm font-semibold">
-            {selected.size} deals selected
+        <div className="sticky top-[60px] z-20 bg-slate-900 text-white px-4 py-2.5 flex items-center justify-between shadow-lg">
+          <div className="text-sm font-semibold flex items-center gap-2">
+            <span>{selected.size} selected</span>
+            <span className="text-[10px] text-slate-400 font-normal">
+              · saves ~{selected.size * 4} taps
+            </span>
           </div>
           <button className="bg-[#1AB266] text-white text-xs font-bold px-3 py-1.5 rounded-md">
-            Generate {selected.size} Telegram posts →
+            Share all {selected.size} →
           </button>
         </div>
       )}
@@ -119,7 +120,7 @@ export default function RameshHome() {
       <div className="p-3 bg-slate-50 min-h-[400px]">
         <div className="flex items-center justify-between mb-3 px-1">
           <h2 className="text-sm font-bold text-slate-900">
-            {activeCategory} deals · {filtered.length}
+            {activeCategory} · {filtered.length} deals
           </h2>
           <button
             onClick={() => setSelected(new Set())}
@@ -163,16 +164,16 @@ export default function RameshHome() {
         </div>
       </div>
 
-      {/* Trending alerts CTA at bottom */}
+      {/* Trending alerts CTA */}
       <div className="px-4 py-6 bg-white border-t border-slate-100">
         <div className="bg-slate-900 text-white rounded-2xl p-4 flex items-center gap-3">
           <Bell className="w-5 h-5 text-amber-400" />
           <div className="flex-1">
             <div className="text-sm font-semibold">
-              Get push alerts for trending deals
+              Beat competitors to trending deals
             </div>
             <div className="text-[11px] text-slate-300 mt-0.5">
-              Notify me when commission &gt;10% in my pinned categories
+              Push alert the moment a 10%+ deal drops in your categories
             </div>
           </div>
           <button className="bg-[#1AB266] text-white text-xs font-bold px-3 py-1.5 rounded-md">

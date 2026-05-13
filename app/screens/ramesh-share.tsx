@@ -139,7 +139,7 @@ export default function RameshShare() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <TopBar variant="page" title="Bulk share to Telegram" />
+      <TopBar variant="page" title="Bulk share" />
 
       {/* Auto-detected channel */}
       <div className="bg-emerald-50 border-b border-emerald-100 px-4 py-3 flex items-center justify-between">
@@ -156,7 +156,7 @@ export default function RameshShare() {
             </div>
           </div>
         </div>
-        <button className="text-[10px] text-emerald-700 font-semibold">
+        <button className="text-[10px] text-emerald-700 font-semibold bg-white px-2 py-1 rounded-md border border-emerald-200">
           Change channel
         </button>
       </div>
