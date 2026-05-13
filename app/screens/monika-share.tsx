@@ -8,17 +8,17 @@ import { MessageCircle, Check, Edit3, Sparkles } from 'lucide-react';
 type Tone = 'friend' | 'family' | 'recommendation';
 
 export default function MonikaShare() {
-  const deal = monikaStarterDeals()[0]; // Mamaearth hair oil — high conversion
+  const deal = monikaStarterDeals()[0];
   const [tone, setTone] = useState<Tone>('friend');
   const [stage, setStage] = useState<'compose' | 'sent'>('compose');
 
   const messages: Record<Tone, string> = {
     friend:
-      'Hey! Saw this Mamaearth hair oil on a deal — was thinking of getting it for myself. Sharing in case you want it too. Half price right now 🙂',
+      'Hey! Saw this Mamaearth hair oil on a deal. Was thinking of getting it for myself. Sharing in case you want it too. Half price right now 🙂',
     family:
-      'Beta, Mamaearth oil is half off this week. Order karwa do agar chahiye — bahut cheap mil raha hai.',
+      'Beta, Mamaearth oil is half off this week. Order karwa do agar chahiye, bahut cheap mil raha hai.',
     recommendation:
-      "I've been using Mamaearth oil for a few months now — works really well for me. It's at half price right now if anyone wants to try.",
+      "I've been using Mamaearth oil for a few months now. Works really well for me. It's at half price right now if anyone wants to try.",
   };
 
   if (stage === 'sent') {
@@ -34,7 +34,6 @@ export default function MonikaShare() {
             Your message went to 3 contacts
           </p>
 
-          {/* Confidence + progress reinforcement */}
           <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 mt-6 text-left">
             <div className="flex items-start gap-3">
               <Sparkles className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
@@ -43,8 +42,8 @@ export default function MonikaShare() {
                   You&apos;re on day 6 of your journey.
                 </div>
                 <div className="text-xs text-emerald-800 mt-1 leading-relaxed">
-                  Most first orders happen between day 8 and day 14. Hang tight
-                  — we&apos;ll notify you the moment someone buys.
+                  Most first orders happen between day 8 and day 14. Hang tight.
+                  We&apos;ll notify you the moment someone buys.
                 </div>
               </div>
             </div>
@@ -77,7 +76,6 @@ export default function MonikaShare() {
     <div className="bg-slate-50 min-h-screen">
       <TopBar variant="page" title="Share with friends" />
 
-      {/* Deal preview */}
       <div className="bg-white px-4 py-3 border-b border-slate-100">
         <div className="flex items-center gap-3">
           <div
@@ -94,7 +92,6 @@ export default function MonikaShare() {
         </div>
       </div>
 
-      {/* Tone selector — the personalization choice */}
       <div className="px-4 pt-4">
         <div className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold mb-2">
           How should this sound?
@@ -121,7 +118,6 @@ export default function MonikaShare() {
         </div>
       </div>
 
-      {/* Message preview — looks like an actual WhatsApp bubble */}
       <div className="px-4 mt-4">
         <div className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold mb-2">
           Message preview
@@ -144,19 +140,17 @@ export default function MonikaShare() {
         </button>
       </div>
 
-      {/* Authenticity note */}
       <div className="px-4 mt-3">
         <div className="bg-amber-50 border border-amber-100 rounded-xl p-3 flex items-start gap-2">
           <Sparkles className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
           <div className="text-[11px] text-amber-900 leading-relaxed">
-            <span className="font-semibold">Sounds like you, not an ad.</span>{' '}
-            People buy more when the recommendation feels real — that&apos;s why
-            this isn&apos;t &quot;OMG amazing deal!&quot;
+            <span className="font-bold">Sounds like a friend, not an ad.</span>{' '}
+            People buy more when the recommendation feels real. That&apos;s why
+            this isn&apos;t &ldquo;OMG amazing deal!&rdquo;
           </div>
         </div>
       </div>
 
-      {/* Action */}
       <div className="sticky bottom-16 bg-white border-t border-slate-200 px-4 py-3 mt-6">
         <button
           onClick={() => setStage('sent')}
@@ -166,7 +160,7 @@ export default function MonikaShare() {
           Send on WhatsApp
         </button>
         <div className="text-[10px] text-slate-500 text-center mt-2">
-          Opens WhatsApp · pick contacts or groups
+          Opens WhatsApp. Pick contacts or groups.
         </div>
       </div>
     </div>

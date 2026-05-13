@@ -9,7 +9,6 @@ import { Sparkles, HelpCircle } from 'lucide-react';
 export default function MonikaDiscovery() {
   const [activeCategory, setActiveCategory] = useState<string>('Popular');
 
-  // Simplified categories — broad, friendly
   const categories = ['Popular', 'Beauty', 'Personal Care', 'Household', 'Fashion'];
 
   const dealsForCategory =
@@ -21,24 +20,23 @@ export default function MonikaDiscovery() {
     <div className="bg-slate-50 min-h-screen">
       <TopBar variant="page" title="Browse deals" />
 
-      {/* Friendly intro */}
+      {/* Tip appropriate for someone on day 6 */}
       <div className="bg-white px-4 py-3 border-b border-slate-100">
         <div className="flex items-start gap-2 bg-amber-50 border border-amber-100 rounded-xl p-3">
           <Sparkles className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
           <div>
             <div className="text-xs font-semibold text-amber-900">
-              Tip for first-time sharers
+              You&apos;re closer than it feels
             </div>
             <div className="text-[11px] text-amber-800 mt-0.5 leading-relaxed">
-              Pick deals friends would actually buy. The ✨ badge means lots of people
-              who click end up buying — easier earnings for you.
+              The ✨ badge means lots of people who click end up buying. Most first orders
+              happen by day 14.
             </div>
           </div>
         </div>
       </div>
 
-      {/* Category chips — soft, no overwhelming filters */}
-      <div className="bg-white px-4 py-3 border-b border-slate-100 sticky top-0 z-10">
+      <div className="bg-white px-4 py-3 border-b border-slate-100 sticky top-[56px] z-10">
         <div className="flex gap-2 overflow-x-auto -mx-4 px-4 pb-1">
           {categories.map((cat) => (
             <button
@@ -56,7 +54,6 @@ export default function MonikaDiscovery() {
         </div>
       </div>
 
-      {/* Result intro */}
       <div className="px-4 py-3">
         <h2 className="text-sm font-bold text-slate-900">
           {activeCategory === 'Popular'
@@ -64,18 +61,16 @@ export default function MonikaDiscovery() {
             : `${activeCategory} deals`}
         </h2>
         <p className="text-[11px] text-slate-500 mt-0.5">
-          {dealsForCategory.length} deals · curated for you
+          {dealsForCategory.length} deals, curated for you
         </p>
       </div>
 
-      {/* Deals — big visual cards */}
       <div className="px-4 space-y-3 pb-8">
         {dealsForCategory.map((deal) => (
           <DealCard key={deal.id} deal={deal} variant="simple" />
         ))}
       </div>
 
-      {/* Help footer */}
       <div className="px-4 pb-6">
         <button className="w-full bg-white border border-slate-200 rounded-xl p-3 flex items-center gap-3 text-left">
           <HelpCircle className="w-4 h-4 text-slate-400 flex-shrink-0" />

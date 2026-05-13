@@ -4,13 +4,12 @@ import { monikaStarterDeals } from '@/lib/deals';
 import { personas } from '@/lib/personas';
 import DealCard from '@/components/DealCard';
 import TopBar from '@/components/TopBar';
-import { Check, Sparkles, HelpCircle, ChevronRight } from 'lucide-react';
+import { Check, Sparkles, ChevronRight } from 'lucide-react';
 
 export default function MonikaHome() {
   const persona = personas.monika;
   const deals = monikaStarterDeals();
 
-  // Monika's progress state
   const milestones = [
     { label: 'First share', done: true },
     { label: 'First click', done: true },
@@ -30,7 +29,7 @@ export default function MonikaHome() {
         </div>
       </div>
 
-      {/* Progress strip — the centerpiece motivational element */}
+      {/* Progress strip */}
       <div className="bg-white px-4 pb-4 border-b border-slate-100">
         <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-4 border border-emerald-100">
           <div className="flex items-center justify-between mb-3">
@@ -42,11 +41,8 @@ export default function MonikaHome() {
             </div>
           </div>
 
-          {/* Milestone strip */}
           <div className="flex items-center justify-between relative">
-            {/* Background line */}
             <div className="absolute top-3 left-3 right-3 h-0.5 bg-slate-200" />
-            {/* Progress fill */}
             <div
               className="absolute top-3 left-3 h-0.5 bg-emerald-500"
               style={{ width: 'calc(50% - 12px)' }}
@@ -84,7 +80,6 @@ export default function MonikaHome() {
             ))}
           </div>
 
-          {/* Pending state with timeline — the trust-builder */}
           <div className="mt-4 bg-white/80 rounded-xl p-3 backdrop-blur-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -105,15 +100,14 @@ export default function MonikaHome() {
               </div>
             </div>
             <div className="mt-2 pt-2 border-t border-slate-100 text-[10px] text-slate-500 leading-relaxed">
-              💡 Most first orders confirm within 14 days. Your sister&apos;s
-              Nykaa purchase is in the return window — once it passes, your
-              ₹30 unlocks automatically.
+              💡 Your sister&apos;s Nykaa purchase is in the 14-day return window.
+              Once it passes, your ₹30 unlocks automatically.
             </div>
           </div>
         </div>
       </div>
 
-      {/* Start with these — curated easy starters */}
+      {/* Start with these */}
       <div className="px-4 pt-5 pb-2">
         <div className="flex items-center justify-between">
           <div>
@@ -124,7 +118,7 @@ export default function MonikaHome() {
               </h2>
             </div>
             <p className="text-[11px] text-slate-500 mt-0.5">
-              High-conversion deals friends and family actually buy
+              Friends and family actually buy these
             </p>
           </div>
         </div>
@@ -136,7 +130,7 @@ export default function MonikaHome() {
         ))}
       </div>
 
-      {/* Explainer cards — the trust + education layer */}
+      {/* Explainer cards */}
       <div className="px-4 pb-6">
         <div className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold mb-3">
           Earn confidently
@@ -145,12 +139,12 @@ export default function MonikaHome() {
           <ExplainerCard
             emoji="💰"
             title="How payouts work"
-            sub="Money lands in your bank 14-21 days after a sale"
+            sub="Money lands in your bank 14 to 21 days after a sale"
           />
           <ExplainerCard
             emoji="🤔"
             title="Why some clicks don't convert"
-            sub="It's not you — here's what affects whether a click becomes a sale"
+            sub="It's not you. Here's what affects whether a click becomes a sale."
           />
           <ExplainerCard
             emoji="💬"

@@ -122,11 +122,15 @@ export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
           >
             {deal.brand}
           </span>
-          {(deal.conversionRate ?? 0) >= 10 && (
-            <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm text-emerald-700 text-[10px] font-bold px-2 py-1 rounded-full">
-              ✨ High conversion
+          {(deal.conversionRate ?? 0) >= 10 ? (
+            <div className="absolute top-2 right-2 bg-white/95 backdrop-blur-sm text-emerald-700 text-[10px] font-bold px-2 py-1 rounded-full">
+              ✨ Easy sell
             </div>
-          )}
+          ) : (deal.conversionRate ?? 0) >= 7 ? (
+            <div className="absolute top-2 right-2 bg-white/95 backdrop-blur-sm text-amber-700 text-[10px] font-bold px-2 py-1 rounded-full">
+              👍 Good pick
+            </div>
+          ) : null}
         </div>
 
         {/* Body */}

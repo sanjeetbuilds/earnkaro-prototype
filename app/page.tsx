@@ -22,25 +22,19 @@ export default function Page() {
   if (!persona) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col items-center justify-center p-6">
-        <div className="max-w-2xl text-center mb-12">
-          <div className="inline-block mb-4 px-3 py-1 bg-slate-900 text-white text-xs font-medium rounded-full">
-            EarnKaro — Product Assignment Prototype
+        <div className="max-w-2xl text-center mb-10">
+          <div className="inline-block mb-5 px-3 py-1 bg-slate-900 text-white text-xs font-medium rounded-full">
+            EarnKaro · Product Assignment
           </div>
-          <h1 className="text-4xl font-bold text-slate-900 mb-3">
-            Same app. Two creators. Two completely different experiences.
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 leading-tight">
+            Same app, built two different ways.
           </h1>
-          <p className="text-slate-600 text-lg leading-relaxed">
-            EarnKaro serves 3M+ creators with one undifferentiated experience.
-            This prototype demonstrates what a behaviorally-segmented product looks like —
-            same surfaces (home, discovery, sharing), fundamentally different experiences,
-            driven by a continuous behavioral classifier.
-          </p>
-          <p className="text-slate-500 text-sm mt-3 italic">
-            Tap a persona to enter their app.
+          <p className="text-slate-600 text-base leading-relaxed">
+            Pick a creator below to see how EarnKaro could feel if it knew who you were.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 w-full max-w-3xl">
+        <div className="grid md:grid-cols-2 gap-5 w-full max-w-3xl">
           {/* Ramesh card */}
           <button
             onClick={() => {
@@ -61,7 +55,8 @@ export default function Page() {
               </div>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed">
-              {personas.ramesh.oneLiner}
+              Runs a 28K-member household-deals Telegram group. Opens the app 12 times a day.
+              His job: find high-commission deals before competitors do.
             </p>
             <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
               <div>
@@ -69,7 +64,7 @@ export default function Page() {
                   Audience
                 </div>
                 <div className="text-xs text-slate-700 font-medium">
-                  {personas.ramesh.audienceType}
+                  Telegram · 28K members
                 </div>
               </div>
               <div className="text-right">
@@ -104,7 +99,8 @@ export default function Page() {
               </div>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed">
-              {personas.monika.oneLiner}
+              Homemaker, day 6 on the app. Shared a few deals to WhatsApp family.
+              Wants spending money of her own. Wondering if this actually works.
             </p>
             <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
               <div>
@@ -112,7 +108,7 @@ export default function Page() {
                   Audience
                 </div>
                 <div className="text-xs text-slate-700 font-medium">
-                  {personas.monika.audienceType}
+                  WhatsApp · friends &amp; family
                 </div>
               </div>
               <div className="text-right">
@@ -133,104 +129,8 @@ export default function Page() {
           </button>
         </div>
 
-        {/* About panel */}
-        <div className="mt-16 max-w-4xl w-full">
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8">
-            <div className="text-[11px] uppercase tracking-wide text-slate-500 font-bold mb-4">
-              About this prototype
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              <div>
-                <div className="text-sm font-bold text-slate-900 mb-2">
-                  The architectural principle
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Segment is a <span className="font-semibold">state</span>,
-                  not an identity. The system continuously classifies users
-                  from behavior. A user who shifts from posting frequency 1×/week
-                  to 30×/day transitions to a different experience — without
-                  ever declaring &quot;I&apos;m a distributor now.&quot;
-                </p>
-              </div>
-
-              <div>
-                <div className="text-sm font-bold text-slate-900 mb-2">
-                  Why these two segments
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Performance Distributor + Emerging Earner = the most dramatic
-                  contrast. Same surfaces (home, discovery, sharing). One is
-                  optimized for speed-to-share and commission. The other for
-                  confidence and first-payout. Content Commerce Creators are
-                  addressed in Q2 of the assignment.
-                </p>
-              </div>
-
-              <div>
-                <div className="text-sm font-bold text-slate-900 mb-2">
-                  What&apos;s mocked vs. real
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  All data is hand-crafted to demonstrate realistic behavior
-                  (commission %, saturation, conversion). No backend. The point
-                  is the personalization architecture — the surfaces, the signals,
-                  the segment-aware defaults. The data model behind this is in
-                  the written submission.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 pt-6 border-t border-slate-100">
-              <div className="text-[11px] uppercase tracking-wide text-slate-500 font-bold mb-3">
-                The three segments
-              </div>
-              <div className="grid md:grid-cols-3 gap-3 text-xs">
-                <div className="bg-emerald-50 border border-emerald-100 rounded-lg p-3">
-                  <div className="font-bold text-emerald-900">
-                    Performance Distributors
-                  </div>
-                  <div className="text-emerald-800 mt-1 leading-relaxed">
-                    Operate distribution as a business. Telegram/WhatsApp groups
-                    of 5K-50K. 8-15 sessions/day. ~60-80% of platform GMV.
-                  </div>
-                  <div className="text-[10px] text-emerald-700 font-semibold mt-2">
-                    Prototyped ✓
-                  </div>
-                </div>
-
-                <div className="bg-rose-50 border border-rose-100 rounded-lg p-3">
-                  <div className="font-bold text-rose-900">Emerging Earners</div>
-                  <div className="text-rose-800 mt-1 leading-relaxed">
-                    First-time affiliate sharers. Personal WhatsApp networks of
-                    50-500. Driven by independence + validation. Largest
-                    acquisition funnel.
-                  </div>
-                  <div className="text-[10px] text-rose-700 font-semibold mt-2">
-                    Prototyped ✓
-                  </div>
-                </div>
-
-                <div className="bg-slate-50 border border-slate-200 rounded-lg p-3">
-                  <div className="font-bold text-slate-900">
-                    Content Commerce Creators
-                  </div>
-                  <div className="text-slate-700 mt-1 leading-relaxed">
-                    Instagram-first personal brands. Audience trust is the moat.
-                    Multi-home across affiliate networks. Highest GMV per click.
-                  </div>
-                  <div className="text-[10px] text-slate-600 font-semibold mt-2">
-                    Addressed in Q2 →
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center text-xs text-slate-400 mt-6">
-            Built with Next.js + Tailwind · Mock data only · No backend ·
-            All design tokens match the actual EarnKaro app
-          </div>
+        <div className="mt-10 text-center text-xs text-slate-400 max-w-md">
+          Mock data. The architecture, reasoning, and metrics are in the written submission.
         </div>
       </div>
     );
