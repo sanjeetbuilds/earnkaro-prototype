@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { rameshFeed } from '@/lib/deals';
 import TopBar from '@/components/TopBar';
-import { Check, MessageCircle, Image as ImageIcon, Edit3 } from 'lucide-react';
+import { Check, MessageCircle, Image as ImageIcon, Edit3, Eye, Lock } from 'lucide-react';
 
 export default function RameshShare() {
   const deals = rameshFeed().slice(0, 6);
@@ -13,6 +13,7 @@ export default function RameshShare() {
   const [stage, setStage] = useState<'select' | 'preview' | 'posted'>(
     'select'
   );
+  const [channel, setChannel] = useState<'telegram' | 'whatsapp' | 'all'>('telegram');
 
   const toggle = (id: string) => {
     const next = new Set(selected);
@@ -23,10 +24,16 @@ export default function RameshShare() {
 
   const selectedDeals = deals.filter((d) => selected.has(d.id));
 
+  const channels = {
+    telegram: { name: 'Household Deals Hub', meta: 'Telegram · 28,043 members', emoji: '📢' },
+    whatsapp: { name: 'Daily Deals Broadcast', meta: 'WhatsApp · 4,200 contacts', emoji: '💬' },
+    all: { name: 'All channels', meta: 'Telegram + WhatsApp · 32K reach', emoji: '🚀' },
+  };
+
   if (stage === 'posted') {
     return (
-      <div className="min-h-screen bg-slate-50">
-        <TopBar variant="page" title="Posted to Telegram" />
+      <div className="bg-slate-50 min-h-screen">
+        <TopBar variant="page" title="Posted" />
         <div className="p-6 pt-12 text-center">
           <div className="w-20 h-20 bg-[#1AB266] rounded-full mx-auto flex items-center justify-center mb-4">
             <Check className="w-10 h-10 text-white" strokeWidth={3} />
@@ -35,7 +42,7 @@ export default function RameshShare() {
             {selectedDeals.length} deals posted
           </h2>
           <p className="text-sm text-slate-600 mt-1">
-            Posted to your channel · Household Deals Hub
+            Posted to {channels[channel].name}
           </p>
 
           <div className="bg-white rounded-2xl p-4 mt-6 text-left border border-slate-200">
@@ -43,19 +50,11 @@ export default function RameshShare() {
               Live tracking
             </div>
             <div className="space-y-2.5 text-xs">
-              <Row label="Posted to" value="28,043 members" />
+              <Row label="Reach" value={channels[channel].meta.split(' · ')[1]} />
               <Row label="First click" value="in 24 seconds" highlight />
-              <Row
-                label="Clicks so far"
-                value="142"
-                highlight
-              />
-              <Row label="Avg. saturation across batch" value="6 (low)" />
-              <Row
-                label="Est. profit pending"
-                value="₹780 – ₹1,420"
-                highlight
-              />
+              <Row label="Clicks so far" value="142" highlight />
+              <Row label="Saturation across batch" value="6 avg (low)" />
+              <Row label="Est. profit pending" value="₹780 to ₹1,420" highlight />
             </div>
           </div>
 
@@ -75,62 +74,97 @@ export default function RameshShare() {
 
   if (stage === 'preview') {
     return (
-      <div className="min-h-screen bg-slate-50">
-        <TopBar variant="page" title="Telegram preview" onBack={() => setStage('select')} />
+      <div className="bg-slate-50 min-h-screen">
+        <TopBar variant="page" title="Preview before posting" onBack={() => setStage('select')} />
+
+        {/* Operator note */}
+        <div className="bg-amber-50 border-b border-amber-100 px-4 py-2.5 flex items-start gap-2">
+          <Lock className="w-3.5 h-3.5 text-amber-700 flex-shrink-0 mt-0.5" />
+          <div className="text-[11px] text-amber-900 leading-relaxed">
+            <span className="font-bold">Your commission is hidden from the audience.</span>{' '}
+            They&apos;ll only see the discount, urgency, and link.
+          </div>
+        </div>
+
         <div className="p-4">
-          <div className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold mb-2">
-            Will be posted as {selectedDeals.length} separate messages
+          <div className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold mb-3">
+            How your {selectedDeals.length} posts will appear
           </div>
 
-          {/* Telegram message previews */}
           <div className="space-y-3">
-            {selectedDeals.map((deal) => (
-              <div
-                key={deal.id}
-                className="bg-white rounded-xl overflow-hidden border border-slate-200"
-              >
-                <div
-                  className={`h-32 bg-gradient-to-br ${deal.image} relative flex items-center justify-center`}
-                >
-                  <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-sm rounded-md px-2 py-1 text-[10px] font-bold text-slate-900">
-                    {deal.brand}
+            {selectedDeals.map((deal) => {
+              const discountPct = Math.round(
+                ((deal.originalPrice - deal.salePrice) / deal.originalPrice) * 100
+              );
+              return (
+                <div key={deal.id}>
+                  {/* Operator-only info strip — clearly marked */}
+                  <div className="bg-slate-900 text-white text-[10px] px-3 py-1.5 rounded-t-lg flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <Eye className="w-3 h-3 text-slate-400" />
+                      <span className="text-slate-400 uppercase tracking-wide font-semibold">Only you see this:</span>
+                    </div>
+                    <div className="flex items-center gap-2.5 font-bold">
+                      <span className="text-[#1AB266]">{deal.profitPct}% commission</span>
+                      <span className="text-slate-400">·</span>
+                      <span>₹{deal.profitFlat}/sale</span>
+                    </div>
                   </div>
-                  <div className="absolute top-2 right-2 bg-[#1AB266] text-white rounded-md px-2 py-1 text-[10px] font-bold">
-                    {deal.profitPct}% commission
+
+                  {/* Audience-facing post */}
+                  <div className="bg-white rounded-b-lg overflow-hidden border border-slate-200 border-t-0">
+                    <div
+                      className={`h-36 bg-gradient-to-br ${deal.image} relative flex items-center justify-center`}
+                    >
+                      <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-sm rounded-md px-2 py-1 text-[10px] font-bold text-slate-900">
+                        {deal.brand}
+                      </div>
+                      {/* THIS is what the audience sees — discount, not commission */}
+                      <div className="absolute top-2 right-2 bg-rose-500 text-white rounded-md px-2.5 py-1 text-xs font-extrabold">
+                        {discountPct}% OFF
+                      </div>
+                      {deal.postedMinutesAgo < 30 && (
+                        <div className="absolute bottom-2 left-2 bg-black/70 backdrop-blur-sm text-white rounded-md px-2 py-1 text-[10px] font-bold">
+                          🔥 Just dropped
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-3">
+                      <div className="text-sm font-bold text-slate-900">
+                        🛒 {deal.title}
+                      </div>
+                      <div className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                        <span className="line-through text-slate-400">
+                          ₹{deal.originalPrice}
+                        </span>{' '}
+                        <span className="font-extrabold text-slate-900">
+                          ₹{deal.salePrice}
+                        </span>{' '}
+                        <span className="text-rose-600 font-bold">
+                          (save ₹{deal.originalPrice - deal.salePrice})
+                        </span>
+                      </div>
+                      <div className="text-xs text-slate-500 mt-1">on {deal.brand}</div>
+                      <div className="text-xs text-blue-600 mt-2 font-medium underline">
+                        https://ektrack.in/r{deal.id}
+                      </div>
+                      <button className="mt-2 text-[11px] text-slate-500 flex items-center gap-1">
+                        <Edit3 className="w-3 h-3" />
+                        Edit this post
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div className="p-3">
-                  <div className="text-sm font-bold text-slate-900">
-                    🔥 {deal.title}
-                  </div>
-                  <div className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                    <span className="line-through text-slate-400">
-                      ₹{deal.originalPrice}
-                    </span>{' '}
-                    →{' '}
-                    <span className="font-bold text-slate-900">
-                      ₹{deal.salePrice}
-                    </span>{' '}
-                    on {deal.brand}
-                  </div>
-                  <div className="text-xs text-[#1AB266] mt-2 font-medium">
-                    👉 https://ektrack.in/r{deal.id}
-                  </div>
-                  <button className="mt-2 text-[11px] text-slate-500 flex items-center gap-1">
-                    <Edit3 className="w-3 h-3" />
-                    Edit caption
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <button
             onClick={() => setStage('posted')}
-            className="w-full mt-4 bg-[#1AB266] text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2"
+            className="w-full mt-5 bg-[#1AB266] text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2"
           >
             <MessageCircle className="w-4 h-4" />
-            Post all {selectedDeals.length} to Telegram
+            Post all {selectedDeals.length} to {channels[channel].name}
           </button>
         </div>
       </div>
@@ -138,30 +172,37 @@ export default function RameshShare() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="bg-slate-50 min-h-screen">
       <TopBar variant="page" title="Bulk share" />
 
-      {/* Auto-detected channel */}
-      <div className="bg-emerald-50 border-b border-emerald-100 px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-            T
-          </div>
-          <div>
-            <div className="text-xs font-semibold text-slate-900">
-              Household Deals Hub
-            </div>
-            <div className="text-[10px] text-slate-600">
-              28,043 members · Telegram
-            </div>
-          </div>
+      {/* Channel picker */}
+      <div className="bg-white px-4 py-3 border-b border-slate-100">
+        <div className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold mb-2">
+          Post to
         </div>
-        <button className="text-[10px] text-emerald-700 font-semibold bg-white px-2 py-1 rounded-md border border-emerald-200">
-          Change channel
-        </button>
+        <div className="grid grid-cols-3 gap-2">
+          {(['telegram', 'whatsapp', 'all'] as const).map((ch) => (
+            <button
+              key={ch}
+              onClick={() => setChannel(ch)}
+              className={`py-2 px-1 rounded-lg border-2 text-left ${
+                channel === ch
+                  ? 'border-[#1AB266] bg-emerald-50'
+                  : 'border-slate-200 bg-white'
+              }`}
+            >
+              <div className="text-base">{channels[ch].emoji}</div>
+              <div className={`text-[10px] font-bold mt-0.5 ${channel === ch ? 'text-emerald-900' : 'text-slate-900'}`}>
+                {ch === 'all' ? 'All channels' : ch === 'telegram' ? 'Telegram' : 'WhatsApp'}
+              </div>
+              <div className="text-[9px] text-slate-500 mt-0.5 leading-tight">
+                {channels[ch].meta.split(' · ')[1]}
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Selection hint */}
       <div className="px-4 py-3 bg-white border-b border-slate-100">
         <div className="flex items-center justify-between">
           <div>
@@ -169,7 +210,7 @@ export default function RameshShare() {
               Select deals to post
             </div>
             <div className="text-[11px] text-slate-500 mt-0.5">
-              Tap to select · auto-formatted for Telegram
+              Audience sees discount and urgency. Your commission stays private.
             </div>
           </div>
           <div className="text-xs font-semibold text-slate-700">
@@ -178,7 +219,6 @@ export default function RameshShare() {
         </div>
       </div>
 
-      {/* Deals — compact rows */}
       <div className="bg-white">
         {deals.map((deal) => {
           const isSelected = selected.has(deal.id);
@@ -223,7 +263,6 @@ export default function RameshShare() {
         })}
       </div>
 
-      {/* Sticky action bar */}
       <div className="sticky bottom-16 bg-white border-t border-slate-200 px-4 py-3">
         <button
           onClick={() => selected.size > 0 && setStage('preview')}
@@ -231,10 +270,10 @@ export default function RameshShare() {
           className="w-full bg-[#1AB266] disabled:bg-slate-300 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2"
         >
           <ImageIcon className="w-4 h-4" />
-          Preview {selected.size} Telegram posts
+          Preview {selected.size} posts
         </button>
-        <div className="text-[10px] text-slate-500 text-center mt-2 italic">
-          Auto-formatted with image, bold hook, price, link. Editable before posting.
+        <div className="text-[10px] text-slate-500 text-center mt-2">
+          Audience-ready format. Editable before posting.
         </div>
       </div>
     </div>

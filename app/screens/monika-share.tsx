@@ -29,9 +29,9 @@ export default function MonikaShare() {
           <div className="w-20 h-20 bg-[#1AB266] rounded-full mx-auto flex items-center justify-center mb-4">
             <Check className="w-10 h-10 text-white" strokeWidth={3} />
           </div>
-          <h2 className="text-xl font-bold text-slate-900">Shared on WhatsApp</h2>
+          <h2 className="text-xl font-bold text-slate-900">Sent to 3 friends</h2>
           <p className="text-sm text-slate-600 mt-1">
-            Your message went to 3 contacts
+            We&apos;ll let you know the moment one of them buys.
           </p>
 
           <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 mt-6 text-left">
@@ -119,8 +119,15 @@ export default function MonikaShare() {
       </div>
 
       <div className="px-4 mt-4">
-        <div className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold mb-2">
-          Message preview
+        <div className="flex items-center justify-between mb-2">
+          <div className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold">
+            What your friends will see
+          </div>
+          <div className="text-[10px] text-slate-500 flex items-center gap-1">
+            <span className="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-semibold">
+              You earn ₹{deal.profitFlat}
+            </span>
+          </div>
         </div>
         <div className="bg-[#E8F8E8] rounded-2xl rounded-bl-sm p-3 border border-emerald-100 relative">
           <div className="text-sm text-slate-800 leading-relaxed whitespace-pre-line">
@@ -138,6 +145,9 @@ export default function MonikaShare() {
           <Edit3 className="w-3 h-3" />
           Edit the message in your own words
         </button>
+        <div className="text-[10px] text-slate-400 mt-1 flex items-center gap-1">
+          🔒 Your friends only see this message. Your earning is private.
+        </div>
       </div>
 
       <div className="px-4 mt-3">
