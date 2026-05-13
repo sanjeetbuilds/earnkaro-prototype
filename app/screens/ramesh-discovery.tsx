@@ -76,7 +76,7 @@ export default function RameshDiscovery() {
         {showSort && (
           <div className="absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl z-30 px-4 py-3">
             <div className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold mb-2">
-              Sort by — sharer view
+              Sort by · sharer view
             </div>
             <div className="space-y-1">
               {(
@@ -100,7 +100,7 @@ export default function RameshDiscovery() {
               ))}
             </div>
             <div className="mt-2 pt-2 border-t border-slate-100 text-[10px] text-slate-500 italic">
-              Note: current app sorts by Popular / Discount / Price — shopper signals.
+              Note: current app sorts by Popular / Discount / Price. Those are shopper signals.
               An operator needs commission, freshness, and saturation.
             </div>
           </div>
