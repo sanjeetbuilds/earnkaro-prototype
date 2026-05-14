@@ -1,5 +1,7 @@
+export type PersonaId = 'ramesh' | 'monika' | 'anjali';
+
 export type Persona = {
-  id: 'ramesh' | 'monika';
+  id: PersonaId;
   name: string;
   avatar: string;
   role: string;
@@ -13,7 +15,7 @@ export type Persona = {
   daysActive: number;
 };
 
-export const personas: Record<'ramesh' | 'monika', Persona> = {
+export const personas: Record<PersonaId, Persona> = {
   ramesh: {
     id: 'ramesh',
     name: 'Ramesh K.',
@@ -41,5 +43,19 @@ export const personas: Record<'ramesh' | 'monika', Persona> = {
     segment: 'Emerging Earner',
     segmentConfidence: 81,
     daysActive: 6,
+  },
+  anjali: {
+    id: 'anjali',
+    name: 'Anjali R.',
+    avatar: 'A',
+    role: 'Personal Finance Creator',
+    oneLiner: 'Explains credit cards, mutual funds and UPI offers to her 80K Instagram followers from Pune.',
+    walletBalance: 2940,
+    walletStatus: 'pending',
+    audienceType: 'Instagram · 80,000 followers · Pune',
+    pinnedCategories: ['Credit Cards', 'Investing', 'Fintech'],
+    segment: 'Settled Niche Influencer',
+    segmentConfidence: 91,
+    daysActive: 142,
   },
 };
