@@ -78,7 +78,7 @@ export default function AnjaliStorefront() {
               </h1>
               <p className="text-slate-600 text-sm md:text-base mt-4 leading-relaxed max-w-md">
                 I&apos;m Anjali. I break down credit cards, mutual funds and fintech apps
-                for everyone who&apos;d rather not read a finance blog. Below — the apps
+                for everyone who&apos;d rather not read a finance blog. Below: the apps
                 and cards I actually use, with live coupons.
               </p>
 
@@ -137,7 +137,7 @@ export default function AnjaliStorefront() {
           <div>
             <h2 className="font-serif text-2xl text-slate-900">Latest finance drops</h2>
             <p className="text-[12px] text-slate-500 mt-0.5">
-              My most recent Reels — tap one for the deal it covers.
+              My most recent Reels. Tap one for the deal it covers.
             </p>
           </div>
         </div>
@@ -190,8 +190,8 @@ export default function AnjaliStorefront() {
               No matches for &ldquo;{query}&rdquo;
             </div>
             <div className="text-[11px] text-slate-500 mt-1 leading-relaxed max-w-xs mx-auto">
-              I haven&apos;t covered this yet. Anjali sees every empty search in her dashboard —
-              this one might become a Reel soon.
+              I haven&apos;t covered this yet. Anjali sees every empty search in her dashboard,
+              so this one might become a Reel soon.
             </div>
           </div>
         ) : (
@@ -205,7 +205,7 @@ export default function AnjaliStorefront() {
 
       <footer className="border-t border-slate-200/70 py-6 px-5">
         <div className="max-w-5xl mx-auto text-[10px] text-slate-500 leading-relaxed">
-          Anjali earns a small commission on partners listed above — at no extra cost to you.
+          Anjali earns a small commission on partners listed above, at no extra cost to you.
           Coupons are pre-attached to every link. Always read terms before applying for a credit
           product. Not investment advice.
         </div>
@@ -406,7 +406,7 @@ function ProductModal({ deal, onClose }: { deal: Deal; onClose: () => void }) {
           </a>
           <div className="text-[10px] text-slate-500 text-center mt-2 leading-relaxed">
             Opens partner site. Coupon applies automatically at checkout. Anjali earns a
-            small commission — no extra cost to you.
+            small commission, no extra cost to you.
           </div>
         </div>
       </div>
@@ -417,19 +417,19 @@ function ProductModal({ deal, onClose }: { deal: Deal; onClose: () => void }) {
 function anjaliBlurb(deal: Deal): string {
   const blurbs: Record<string, string> = {
     a1: 'I keep this in my wallet for online shopping. The ₹500 Amazon voucher offsets the joining fee on first spend, and the 10× rewards on online merchants are real.',
-    a2: 'If most of your spend is on Google Pay bills (electricity, gas, broadband), this card pays back 5%. Don\'t bother if your bills are tiny — flat ₹250 cap per month.',
+    a2: 'If most of your spend is on Google Pay bills (electricity, gas, broadband), this card pays back 5%. Don\'t bother if your bills are tiny: flat ₹250 cap per month.',
     a3: 'My pick for Swiggy/Zomato/Amazon households. The 5% cashback is real, and the joining offer covers most lifestyle reimbursements for the first year.',
-    a4: 'Easiest way to start a SIP — Groww gives you ₹100 once your first SIP debits. I use this for my long-term equity allocation.',
+    a4: 'Easiest way to start a SIP: Groww gives you ₹100 once your first SIP debits. I use this for my long-term equity allocation.',
     a5: 'My demat for delivery trades. ₹0 brokerage on equity delivery means you keep more of every long-term hold. The account opening is fully digital.',
     a6: 'I pay every credit card bill on Cred. Reminder, statement parsing, and the rewards round to actual things (Amazon vouchers, premium subscriptions).',
-    a7: 'Slice is my secondary UPI for splitting tabs — the cashback on first ₹500 is a nice on-ramp. Not a credit card; treat it as a UPI app first.',
+    a7: 'Slice is my secondary UPI for splitting tabs. The cashback on first ₹500 is a nice on-ramp. Not a credit card; treat it as a UPI app first.',
     a8: 'Useful for the no-interest postpaid window if you\'re disciplined. I use it to smooth large one-off bills, not for recurring spend.',
   };
   return blurbs[deal.id] ?? 'A partner I\'ve personally vetted.';
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Hero illustration — soft, hand-drawn-ish; not flashy.
+// Hero illustration: soft, hand-drawn-ish; not flashy.
 
 function HeroIllustration() {
   return (

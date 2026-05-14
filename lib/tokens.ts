@@ -1,4 +1,4 @@
-// EarnKaro design tokens — matched to the actual app
+// EarnKaro design tokens, matched to the actual app
 export const tokens = {
   colors: {
     // Primary brand

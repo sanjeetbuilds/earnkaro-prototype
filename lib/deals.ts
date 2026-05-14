@@ -16,10 +16,10 @@ export type Deal = {
   image: string;           // gradient placeholder color
   isFlash?: boolean;
   isNew?: boolean;
-  // Storefront extras — used by /anjali public page and Anjali screens.
+  // Storefront extras, used by /anjali public page and Anjali screens.
   couponCode?: string;
   affiliateUrl?: string;
-  // Some "deals" are not retail SKUs — they're financial signups (cards, funds, fintech).
+  // Some "deals" are not retail SKUs. They're financial signups (cards, funds, fintech).
   // For these, salePrice is the user-facing reward (e.g., joining bonus) and
   // profitFlat is the commission to the creator per approved/converted lead.
   payoutType?: 'sale' | 'lead' | 'signup';
@@ -27,7 +27,7 @@ export type Deal = {
 };
 
 export const allDeals: Deal[] = [
-  // Household — Ramesh's primary category
+  // Household: Ramesh's primary category
   {
     id: 'd1',
     brand: 'Flipkart',
@@ -76,7 +76,7 @@ export const allDeals: Deal[] = [
     isNew: true,
   },
 
-  // Fashion — Anjali's territory but Ramesh deprioritizes
+  // Fashion: Anjali's territory but Ramesh deprioritizes
   {
     id: 'd4',
     brand: 'Myntra',
@@ -144,7 +144,7 @@ export const allDeals: Deal[] = [
     isNew: true,
   },
 
-  // Personal Care — Monika's easy starter deals
+  // Personal Care: Monika's easy starter deals
   {
     id: 'd8',
     brand: 'Amazon',
@@ -157,7 +157,7 @@ export const allDeals: Deal[] = [
     profitFlat: 37,
     postedMinutesAgo: 60,
     saturationCount: 24,
-    conversionRate: 11.2,  // high — good starter deal
+    conversionRate: 11.2,  // high conversion, good starter deal
     image: 'from-green-200 to-green-400',
   },
   {
@@ -187,11 +187,11 @@ export const allDeals: Deal[] = [
     profitFlat: 21,
     postedMinutesAgo: 180,
     saturationCount: 12,
-    conversionRate: 14.8,  // very high conversion — perfect for beginner
+    conversionRate: 14.8,  // very high conversion, perfect for beginner
     image: 'from-teal-200 to-teal-400',
   },
 
-  // Credit Cards — Anjali's territory. Commission is flat per approved card.
+  // Credit Cards: Anjali's territory. Commission is flat per approved card.
   {
     id: 'a1',
     brand: 'SBI Card',
@@ -252,7 +252,7 @@ export const allDeals: Deal[] = [
     ctaLabel: 'Apply now',
   },
 
-  // Investing — mutual fund signups
+  // Investing: mutual fund signups
   {
     id: 'a4',
     brand: 'Groww',
@@ -356,7 +356,7 @@ export const allDeals: Deal[] = [
 // Curated subsets for each persona's experience
 export const rameshFeed = (): Deal[] => {
   // Operator feed: ranked by composite score (commission × freshness × inverse saturation)
-  // Household pinned first, then high-commission elsewhere — finance stays out of Ramesh's view.
+  // Household pinned first, then high-commission elsewhere. Finance stays out of Ramesh's view.
   const retail = allDeals.filter((d) => !isFinanceCategory(d.category));
   const household = retail.filter((d) => d.category === 'Household')
     .sort((a, b) => {
@@ -371,7 +371,7 @@ export const rameshFeed = (): Deal[] => {
 
 export const monikaStarterDeals = (): Deal[] => {
   // 5 hand-picked easy starters: high conversion rate, broadly relatable, low price.
-  // Finance signups are excluded — too high-stakes for someone on day 6.
+  // Finance signups are excluded: too high-stakes for someone on day 6.
   return allDeals
     .filter((d) => !isFinanceCategory(d.category))
     .filter((d) => (d.conversionRate ?? 0) >= 7 && d.salePrice <= 500)

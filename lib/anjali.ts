@@ -1,5 +1,5 @@
 // Anjali-specific dashboard mock data.
-// The Day-14 demo: SBI Credit Card Reel — 12K views, 287 DM-captured commenters,
+// The Day-14 demo: SBI Credit Card Reel with 12K views, 287 DM-captured commenters,
 // 7 confirmed purchases, ₹2,940 pending.
 
 import { allDeals, Deal } from '@/lib/deals';
@@ -38,7 +38,7 @@ export const latestReel: ReelMetrics = {
   pendingEarnings: 2940,
 };
 
-// All the Reels Anjali has posted in the last 30 days — drives the
+// All the Reels Anjali has posted in the last 30 days. Drives the
 // "Latest Gadget Drop"-style carousel on the public storefront.
 export const recentReels: ReelMetrics[] = [
   latestReel,
@@ -46,7 +46,7 @@ export const recentReels: ReelMetrics[] = [
     id: 'reel-groww',
     postedHoursAgo: 96,
     thumbnail: 'from-emerald-300 via-teal-300 to-emerald-500',
-    caption: 'Start a ₹500 SIP in 4 minutes — and get ₹100 instantly.',
+    caption: 'Start a ₹500 SIP in 4 minutes and get ₹100 instantly.',
     dealId: 'a4',
     views: 18400,
     likes: 2210,
@@ -78,7 +78,7 @@ export const recentReels: ReelMetrics[] = [
     id: 'reel-hdfc',
     postedHoursAgo: 240,
     thumbnail: 'from-blue-300 via-sky-300 to-blue-500',
-    caption: 'HDFC Millennia vs Axis ACE — which one wins for Swiggy?',
+    caption: 'HDFC Millennia vs Axis ACE: which one wins for Swiggy?',
     dealId: 'a3',
     views: 14200,
     likes: 1620,
@@ -92,7 +92,7 @@ export const recentReels: ReelMetrics[] = [
   },
 ];
 
-// Storefront-attributed performance — what /anjali storefront produced this week.
+// Storefront-attributed performance: what /anjali storefront produced this week.
 export type StorefrontWeek = {
   gmv: number;
   pendingEarnings: number;
@@ -115,7 +115,7 @@ export const storefrontThisWeek: StorefrontWeek = {
   weekOverWeekPct: 18,
 };
 
-// Top-converting products this week — shown in dashboard.
+// Top-converting products this week, shown in dashboard.
 export type TopProduct = {
   deal: Deal;
   clicks: number;
@@ -155,7 +155,7 @@ export const topProductsThisWeek: TopProduct[] = [
   },
 ];
 
-// "Audience searched, but Anjali doesn't stock" — gap signal.
+// "Audience searched, but Anjali doesn't stock": gap signal.
 // These are real-feeling personal-finance queries her followers type into the
 // storefront search bar and get an empty state.
 export type SearchMiss = {
@@ -176,7 +176,7 @@ export const searchMisses: SearchMiss[] = [
     query: 'lounge access card',
     searchesThisWeek: 21,
     trend: 'spike',
-    suggestion: 'Axis Magnus or HDFC Diners — both pay ₹600+/approved card',
+    suggestion: 'Axis Magnus or HDFC Diners, both pay ₹600+/approved card',
   },
   {
     query: 'ELSS funds',
@@ -188,7 +188,7 @@ export const searchMisses: SearchMiss[] = [
     query: 'gold loan',
     searchesThisWeek: 12,
     trend: 'steady',
-    suggestion: 'Muthoot Finance — outside your niche, consider editorial review first',
+    suggestion: 'Muthoot Finance. Outside your niche, consider editorial review first',
   },
 ];
 
@@ -209,7 +209,7 @@ export const autoFeatureDecisions: AutoFeatureDecision[] = [
     dealId: 'a6',
     decidedHoursAgo: 4,
     action: 'promoted-to-featured',
-    reason: '12.7% click-to-purchase — 3.1× your storefront average',
+    reason: '12.7% click-to-purchase, 3.1× your storefront average',
     signal: '18 conversions / 142 clicks in last 168h',
     state: 'live',
   },
@@ -227,7 +227,7 @@ export const autoFeatureDecisions: AutoFeatureDecision[] = [
     dealId: 'a8',
     decidedHoursAgo: 36,
     action: 'demoted-from-featured',
-    reason: 'Conversion fell to 4.4% — below your storefront baseline',
+    reason: 'Conversion fell to 4.4%, below your storefront baseline',
     signal: 'Was 9.1% three weeks ago, declined since coupon expired',
     state: 'live',
   },

@@ -35,7 +35,7 @@ export default function RameshDiscovery() {
     <div className="bg-slate-50 min-h-screen">
       <TopBar variant="page" title="All Deals" />
 
-      {/* Sort + filter bar — sharer-oriented, not shopper-oriented */}
+      {/* Sort + filter bar: sharer-oriented, not shopper-oriented */}
       <div className="bg-white px-4 py-3 border-b border-slate-100 sticky top-0 z-20">
         <div className="flex items-center gap-2">
           <button
@@ -72,7 +72,7 @@ export default function RameshDiscovery() {
           </div>
         )}
 
-        {/* Sort sheet — the centerpiece of the personalization story */}
+        {/* Sort sheet: the centerpiece of the personalization story */}
         {showSort && (
           <div className="absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl z-30 px-4 py-3">
             <div className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold mb-2">

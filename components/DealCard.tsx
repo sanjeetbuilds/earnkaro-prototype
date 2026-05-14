@@ -21,7 +21,7 @@ const brandColors: Record<string, string> = {
 };
 
 export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
-  // OPERATOR variant — for Ramesh
+  // OPERATOR variant: for Ramesh
   // Shows commission %, saturation, freshness inline. Compact.
   if (variant === 'operator') {
     const isFresh = deal.postedMinutesAgo < 30;
@@ -58,7 +58,7 @@ export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
             </span>
           </div>
 
-          {/* Operator signals — REWRITTEN with interpretive labels */}
+          {/* Operator signals: REWRITTEN with interpretive labels */}
           <div className="flex items-center gap-1.5 mt-2 flex-wrap">
             <span
               className={`text-[10px] px-1.5 py-0.5 rounded font-semibold flex items-center gap-1 ${
@@ -92,7 +92,7 @@ export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
             </span>
           </div>
 
-          {/* Channel-aware share — defaults to user's primary, but flexible */}
+          {/* Channel-aware share. Defaults to user's primary, but flexible */}
           <button
             onClick={onShare}
             className="w-full mt-2 bg-slate-900 text-white text-xs font-semibold py-1.5 rounded-md flex items-center justify-center gap-1.5"
@@ -108,7 +108,7 @@ export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
     );
   }
 
-  // SIMPLE variant — for Monika
+  // SIMPLE variant: for Monika
   // Big visuals, friendly framing, conversion confidence signal, no overwhelm
   if (variant === 'simple') {
     return (
@@ -148,7 +148,7 @@ export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
             </span>
           </div>
 
-          {/* Confidence signal — the key motivational element */}
+          {/* Confidence signal: the key motivational element */}
           <div className="mt-2 bg-emerald-50 border border-emerald-100 rounded-lg px-2.5 py-2">
             <div className="text-[11px] text-emerald-800 font-medium">
               You earn <span className="font-bold">₹{deal.profitFlat}</span> on every sale
@@ -160,7 +160,7 @@ export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
             )}
           </div>
 
-          {/* One primary action — no overwhelm */}
+          {/* One primary action: no overwhelm */}
           <button
             onClick={onShare}
             className="w-full mt-3 bg-[#1AB266] text-white text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2"
@@ -173,7 +173,7 @@ export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
     );
   }
 
-  // STANDARD — fallback (current EarnKaro style)
+  // STANDARD: fallback (current EarnKaro style)
   return (
     <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
       <div className={`h-28 bg-gradient-to-br ${deal.image}`} />

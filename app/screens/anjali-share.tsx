@@ -100,7 +100,7 @@ export default function AnjaliShare() {
         </div>
       </div>
 
-      {/* Format picker — influencer-native */}
+      {/* Format picker: influencer-native */}
       <div className="px-4 pt-4">
         <div className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold mb-2">
           Format
@@ -182,7 +182,7 @@ export default function AnjaliShare() {
             <div className="p-3 bg-slate-50">
               <div className="bg-[#E8F8E8] rounded-2xl rounded-bl-sm p-3 border border-emerald-100 max-w-[85%]">
                 <div className="text-[11px] text-slate-800 leading-relaxed">
-                  Hey 👋 just dropping the SBI card I keep mentioning — I use it for
+                  Hey 👋 just dropping the SBI card I keep mentioning, I use it for
                   online shopping &amp; the Amazon voucher kicks in on first spend.
                   Quick apply ↓
                 </div>

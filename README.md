@@ -1,7 +1,7 @@
 # EarnKaro · Product Assignment Prototype
 
 A clickable prototype that shows how EarnKaro could feel if it knew **who you were**.
-Same app, same surfaces — re-rendered for three very different creators.
+Same app, same surfaces, re-rendered for three very different creators.
 
 This repo accompanies the written submission for the EarnKaro Product Manager
 assignment (Q1 + Q2).
@@ -21,28 +21,28 @@ Each persona drives:
 - Its own ranking logic over the shared deal pool (`lib/deals.ts`)
 - The wallet, segment label, and pinned categories in `lib/personas.ts`
 
-The persona toggle is the centerpiece of the demo — the same bottom-nav surfaces
+The persona toggle is the centerpiece of the demo. The same bottom-nav surfaces
 re-render based on which creator you&apos;re &ldquo;viewing as.&rdquo;
 
 ---
 
 ## What&apos;s built
 
-### `/` — Persona selector + in-app shell
+### `/` Persona selector + in-app shell
 - Pick Ramesh, Monika, or Anjali → drops you into the in-app experience.
 - The &ldquo;⇄ Switch&rdquo; pill at the top cycles personas without leaving the screen,
   so reviewers can compare how each surface differs.
 - Three tabs are wired per persona: Home, Discovery (Partners), Make Links (Share).
-  Reports and Profile are stubbed with a &ldquo;not built&rdquo; placeholder — the
+  Reports and Profile are stubbed with a &ldquo;not built&rdquo; placeholder. The
   assignment scope is the first three.
 
-### `/anjali` — Public creator storefront
+### `/anjali` Public creator storefront
 A separate, public-facing route modelled on Mukul Sharma&apos;s
 [stufflistings.shop](https://stufflistings.shop):
 - Hero illustration + bio + social-handle row
 - Search bar over Anjali&apos;s recommendations (empty-state shows up in her
   creator dashboard as a search-miss signal)
-- &ldquo;Latest finance drops&rdquo; carousel of recent Reels — each tied to the
+- &ldquo;Latest finance drops&rdquo; carousel of recent Reels, each tied to the
   deal it covers
 - Product grid with image / name / price / coupon badge
 - Product detail modal showing live price, active coupon code (copyable), and a
@@ -52,11 +52,11 @@ This is what an audience member lands on when they tap Anjali&apos;s Auto-DM lin
 
 ### Anjali creator dashboard highlights
 The Day-14 Anjali demo from the Q2 strategic doc is wired in `app/screens/anjali-home.tsx`:
-- Latest Reel performance — SBI credit card Reel, 12K views, 287 commenters
+- Latest Reel performance: SBI credit card Reel, 12K views, 287 commenters
   captured by Auto DM, 7 confirmed purchases, ₹2,940 pending wallet
 - Storefront-attributed GMV (week over week)
 - Top-converting products this week
-- Audience search queries that returned no results — gap signal
+- Audience search queries that returned no results (gap signal)
 - &ldquo;What the system did&rdquo; tab: auto-promoted-to-featured, demoted, pinned
   decisions, each editable (Keep / Revert)
 
@@ -67,7 +67,7 @@ The Day-14 Anjali demo from the Q2 strategic doc is wired in `app/screens/anjali
 - Next.js 16 (App Router) + React 19
 - TypeScript, Tailwind v4
 - `lucide-react` for iconography
-- All data is in-memory mocks under `lib/` — no backend
+- All data is in-memory mocks under `lib/`, no backend
 
 ## Run locally
 
@@ -103,7 +103,7 @@ lib/
 
 ## A note on scope
 
-The prototype is intentionally hand-wired — the goal is to make the **product
+The prototype is intentionally hand-wired. The goal is to make the **product
 choices** legible (what each persona sees, in what order, why), not to
 demonstrate state management or a real CMS. The architecture, segmentation
 reasoning, and metric framework are in the written submission.

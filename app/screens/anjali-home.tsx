@@ -100,7 +100,7 @@ function AutoTab() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Reel performance — the Day-14 Anjali demo, front and center.
+// Reel performance: the Day-14 Anjali demo, front and center.
 
 function ReelPerformanceCard() {
   return (
@@ -138,7 +138,7 @@ function ReelPerformanceCard() {
         </div>
       </div>
 
-      {/* The funnel — this is the part that justifies the persona */}
+      {/* The funnel: this is the part that justifies the persona */}
       <div className="bg-gradient-to-br from-indigo-50 to-violet-50 border-t border-indigo-100 px-4 py-3">
         <div className="flex items-center gap-1.5 mb-2.5">
           <MessageCircle className="w-3.5 h-3.5 text-indigo-700" />
@@ -308,7 +308,7 @@ function TopProductsCard() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Searches that returned nothing — Anjali's storefront gap signal.
+// Searches that returned nothing: Anjali's storefront gap signal.
 
 function SearchMissesCard() {
   return (
@@ -413,7 +413,7 @@ function AutoDecisionCard({
       ) : (
         <div className="mt-3 text-[10px] text-slate-500 italic flex items-center gap-1">
           <Undo2 className="w-3 h-3" />
-          You reverted this — the system learned.
+          You reverted this. The system learned.
         </div>
       )}
     </div>

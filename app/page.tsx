@@ -23,7 +23,7 @@ export default function Page() {
   const [persona, setPersona] = useState<Persona>(null);
   const [tab, setTab] = useState<Tab>('home');
 
-  // Landing — persona selector
+  // Landing: persona selector
   if (!persona) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col items-center justify-center p-6">

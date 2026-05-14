@@ -98,7 +98,7 @@ export default function RameshShare() {
               );
               return (
                 <div key={deal.id}>
-                  {/* Operator-only info strip — clearly marked */}
+                  {/* Operator-only info strip, clearly marked */}
                   <div className="bg-slate-900 text-white text-[10px] px-3 py-1.5 rounded-t-lg flex items-center justify-between">
                     <div className="flex items-center gap-1.5">
                       <Eye className="w-3 h-3 text-slate-400" />
@@ -119,7 +119,7 @@ export default function RameshShare() {
                       <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-sm rounded-md px-2 py-1 text-[10px] font-bold text-slate-900">
                         {deal.brand}
                       </div>
-                      {/* THIS is what the audience sees — discount, not commission */}
+                      {/* THIS is what the audience sees: discount, not commission */}
                       <div className="absolute top-2 right-2 bg-rose-500 text-white rounded-md px-2.5 py-1 text-xs font-extrabold">
                         {discountPct}% OFF
                       </div>

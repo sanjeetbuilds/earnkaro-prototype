@@ -85,7 +85,7 @@ export default function RameshHome() {
         </div>
       </div>
 
-      {/* Sort/filter bar — REWRITTEN with user-friendly labels */}
+      {/* Sort/filter bar: REWRITTEN with user-friendly labels */}
       <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between gap-2">
         <button className="flex items-center gap-1 text-[11px] flex-shrink-0">
           <span className="text-slate-500">Sorted by</span>
@@ -101,7 +101,7 @@ export default function RameshHome() {
         </div>
       </div>
 
-      {/* Bulk select bar — sticky when items selected */}
+      {/* Bulk select bar, sticky when items selected */}
       {selected.size > 0 && (
         <div className="sticky top-[60px] z-20 bg-slate-900 text-white px-4 py-2.5 flex items-center justify-between shadow-lg">
           <div className="text-sm font-semibold flex items-center gap-2">
