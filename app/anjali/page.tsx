@@ -7,12 +7,17 @@ import { anjaliFeed } from '@/lib/deals';
 import { recentReels } from '@/lib/anjali';
 import {
   Search,
+  Play,
   PlayCircle,
   Copy,
   Check,
   ExternalLink,
   ShieldCheck,
   X,
+  CreditCard,
+  TrendingUp,
+  Smartphone,
+  Star,
 } from 'lucide-react';
 
 const brandColors: Record<string, string> = {
@@ -164,6 +169,13 @@ export default function AnjaliStorefront() {
                 <div
                   className={`aspect-[9/14] rounded-2xl bg-gradient-to-br ${reel.thumbnail} relative overflow-hidden shadow-sm`}
                 >
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <Play
+                      className="w-10 h-10 text-white/50"
+                      fill="currentColor"
+                      strokeWidth={0}
+                    />
+                  </div>
                   <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-full px-2 py-0.5 text-[10px] font-bold text-slate-900 flex items-center gap-1">
                     <PlayCircle className="w-3 h-3 text-rose-600" fill="currentColor" />
                     Reel · {fmtK(reel.views)} views
@@ -234,6 +246,29 @@ export default function AnjaliStorefront() {
   );
 }
 
+// Watermark icon for each product gradient panel. White at low opacity so it
+// reads as illustration, not a hard graphic. Consistent stroke style across
+// every card (lucide defaults) so the cards feel like a set.
+function ProductIcon({ deal, size }: { deal: Deal; size: number }) {
+  const Icon =
+    deal.brand === 'Cred'
+      ? Star
+      : deal.category === 'Credit Cards'
+      ? CreditCard
+      : deal.category === 'Investing'
+      ? TrendingUp
+      : Smartphone;
+  return (
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <Icon
+        className="text-white/35"
+        style={{ width: size, height: size }}
+        strokeWidth={1.5}
+      />
+    </div>
+  );
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Featured product card: full-width hero treatment, sits above the regular grid.
 
@@ -246,8 +281,9 @@ function FeaturedProductCard({ deal, onOpen }: { deal: Deal; onOpen: () => void 
       <div className="flex flex-col md:flex-row">
         {/* Gradient panel: same SBI lavender/indigo as the small-card variant */}
         <div
-          className={`relative bg-gradient-to-br ${deal.image} aspect-[5/4] md:aspect-auto md:w-2/5 md:min-h-[220px]`}
+          className={`relative bg-gradient-to-br ${deal.image} aspect-[5/4] md:aspect-auto md:w-2/5 md:min-h-[220px] overflow-hidden`}
         >
+          <ProductIcon deal={deal} size={112} />
           <span className="absolute top-3 left-3 bg-amber-100 text-amber-900 text-[11px] font-semibold px-2.5 py-1 rounded-full">
             Featured · Most loved this week
           </span>
@@ -299,10 +335,11 @@ function ProductCard({ deal, onOpen }: { deal: Deal; onOpen: () => void }) {
       className="text-left bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md hover:border-slate-300 transition-all"
     >
       <div
-        className={`aspect-[5/4] bg-gradient-to-br ${deal.image} relative flex items-end p-2.5`}
+        className={`aspect-[5/4] bg-gradient-to-br ${deal.image} relative flex items-end p-2.5 overflow-hidden`}
       >
+        <ProductIcon deal={deal} size={88} />
         <span
-          className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${
+          className={`relative text-[10px] font-bold px-1.5 py-0.5 rounded border ${
             brandColors[deal.brand] ?? 'bg-white text-slate-800 border-slate-200'
           }`}
         >
