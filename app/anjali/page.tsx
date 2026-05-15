@@ -48,6 +48,16 @@ export default function AnjaliStorefront() {
     });
   }, [allProducts, query, category]);
 
+  // The Q2 doc's narrative: SBI auto-promoted to featured by storefront ranking.
+  const featured = filtered.find((d) => d.id === 'a1');
+  const rest = filtered.filter((d) => d.id !== 'a1');
+  const subhead =
+    featured && rest.length > 0
+      ? `${rest.length} ${rest.length === 1 ? 'pick' : 'picks'} plus this week's featured · live coupons applied at checkout`
+      : featured
+      ? `This week's featured pick · live coupons applied at checkout`
+      : `${rest.length} ${rest.length === 1 ? 'pick' : 'picks'} · live coupons applied at checkout`;
+
   return (
     <div className="min-h-screen" style={{ background: '#FAF7EF' }}>
       {/* Hero */}
@@ -180,9 +190,7 @@ export default function AnjaliStorefront() {
         <h2 className="font-serif text-2xl text-slate-900 mb-1">
           Cards, demats &amp; apps I actually use
         </h2>
-        <p className="text-[12px] text-slate-500 mb-5">
-          {filtered.length} {filtered.length === 1 ? 'pick' : 'picks'} · live coupons applied at checkout
-        </p>
+        <p className="text-[12px] text-slate-500 mb-5">{subhead}</p>
 
         {filtered.length === 0 ? (
           <div className="bg-white border border-dashed border-slate-300 rounded-2xl p-10 text-center">
@@ -195,11 +203,21 @@ export default function AnjaliStorefront() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {filtered.map((d) => (
-              <ProductCard key={d.id} deal={d} onOpen={() => setSelected(d)} />
-            ))}
-          </div>
+          <>
+            {featured && (
+              <FeaturedProductCard
+                deal={featured}
+                onOpen={() => setSelected(featured)}
+              />
+            )}
+            {rest.length > 0 && (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {rest.map((d) => (
+                  <ProductCard key={d.id} deal={d} onOpen={() => setSelected(d)} />
+                ))}
+              </div>
+            )}
+          </>
         )}
       </section>
 
@@ -213,6 +231,61 @@ export default function AnjaliStorefront() {
 
       {selected && <ProductModal deal={selected} onClose={() => setSelected(null)} />}
     </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Featured product card: full-width hero treatment, sits above the regular grid.
+
+function FeaturedProductCard({ deal, onOpen }: { deal: Deal; onOpen: () => void }) {
+  return (
+    <button
+      onClick={onOpen}
+      className="group w-full text-left bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md hover:border-slate-300 transition-all mb-3"
+    >
+      <div className="flex flex-col md:flex-row">
+        {/* Gradient panel: same SBI lavender/indigo as the small-card variant */}
+        <div
+          className={`relative bg-gradient-to-br ${deal.image} aspect-[5/4] md:aspect-auto md:w-2/5 md:min-h-[220px]`}
+        >
+          <span className="absolute top-3 left-3 bg-amber-100 text-amber-900 text-[11px] font-semibold px-2.5 py-1 rounded-full">
+            Featured · Most loved this week
+          </span>
+          {deal.couponCode && (
+            <span className="absolute top-3 right-3 bg-amber-300 text-amber-950 text-[11px] font-mono font-bold px-2 py-1 rounded">
+              {deal.couponCode}
+            </span>
+          )}
+          <span
+            className={`absolute bottom-3 left-3 text-[11px] font-bold px-2 py-0.5 rounded border ${
+              brandColors[deal.brand] ?? 'bg-white text-slate-800 border-slate-200'
+            }`}
+          >
+            {deal.brand}
+          </span>
+        </div>
+
+        {/* Body */}
+        <div className="flex-1 p-5 md:p-6 flex flex-col">
+          <div className="text-[10px] uppercase tracking-wide text-slate-500 font-semibold">
+            {deal.category}
+          </div>
+          <h3 className="text-lg md:text-xl font-bold text-slate-900 leading-snug mt-1">
+            {deal.title.split('·')[0].trim()}
+          </h3>
+          <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+            The credit card I actually use for online shopping. 5% cashback on
+            Swiggy, Zomato, Amazon. ₹450 cashback on first spend.
+          </p>
+          <div className="mt-auto pt-4 flex items-center justify-between">
+            <span className="text-sm font-semibold text-emerald-700">Apply free</span>
+            <span className="text-sm text-slate-400 group-hover:text-slate-900 transition-colors">
+              View →
+            </span>
+          </div>
+        </div>
+      </div>
+    </button>
   );
 }
 
