@@ -26,78 +26,117 @@ export default function Page() {
   // Landing: persona selector
   if (!persona) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col items-center justify-center p-6">
-        <div className="max-w-2xl text-center mb-10">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col items-center py-12 md:py-16 px-6">
+        <div className="max-w-2xl text-center mb-12">
           <div className="inline-block mb-5 px-3 py-1 bg-slate-900 text-white text-xs font-medium rounded-full">
             EarnKaro · Product Assignment
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 leading-tight">
-            Same app, built three different ways.
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 leading-tight">
+            Two questions. One product surface.
           </h1>
           <p className="text-slate-600 text-base leading-relaxed">
-            Pick a creator below to see how EarnKaro could feel if it knew who you were.
+            The assignment has two parts. Q1 asks how EarnKaro should personalize across its
+            existing creator base. Q2 asks how an Instagram Creator Programme should work.
+            The prototype below shows both.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5 w-full max-w-5xl">
-          <PersonaCard
-            onSelect={() => {
-              setPersona('ramesh');
-              setTab('home');
-            }}
-            initial="R"
-            chipColor="bg-[#1AB266]"
-            name="Ramesh K."
-            segment="Performance Distributor"
-            body="Runs a 28K-member household-deals Telegram group. Opens the app 12 times a day. His job: find high-commission deals before competitors do."
-            audienceLabel="Telegram · 28K members"
-            walletText={`₹${personas.ramesh.walletBalance.toLocaleString('en-IN')}`}
-            walletStatus={null}
-            cta="View as Ramesh"
-          />
-          <PersonaCard
-            onSelect={() => {
-              setPersona('monika');
-              setTab('home');
-            }}
-            initial="M"
-            chipColor="bg-rose-500"
-            name="Monika S."
-            segment="Emerging Earner"
-            body="Homemaker, day 6 on the app. Shared a few deals to WhatsApp family. Wants spending money of her own. Wondering if this actually works."
-            audienceLabel="WhatsApp · friends & family"
-            walletText={`₹${personas.monika.walletBalance}`}
-            walletStatus="pending"
-            cta="View as Monika"
-          />
-          <PersonaCard
-            onSelect={() => {
-              setPersona('anjali');
-              setTab('home');
-            }}
-            initial="A"
-            chipColor="bg-indigo-600"
-            name="Anjali R."
-            segment="Settled Niche Influencer"
-            body="80K followers on Instagram. Pune. Personal-finance niche. Posts Reels weekly, uses Auto-DM to capture commenters into her storefront."
-            audienceLabel="Instagram · 80K followers"
-            walletText={`₹${personas.anjali.walletBalance.toLocaleString('en-IN')}`}
-            walletStatus="pending"
-            cta="View as Anjali"
-          />
+        {/* SECTION A — Q1 */}
+        <section className="w-full max-w-3xl">
+          <SectionLabel>Q1 · Segmentation &amp; Personalization</SectionLabel>
+          <div className="text-center mt-4 mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">
+              Same app, two segments, two experiences.
+            </h2>
+            <p className="text-slate-600 text-sm md:text-base mt-2 leading-relaxed max-w-xl mx-auto">
+              Ramesh and Monika see different home, discovery, and sharing surfaces because
+              the app knows who they are.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <PersonaCard
+              onSelect={() => {
+                setPersona('ramesh');
+                setTab('home');
+              }}
+              initial="R"
+              chipColor="bg-[#1AB266]"
+              name="Ramesh K."
+              segment="Performance Distributor"
+              body="Runs a 28K-member household-deals Telegram group. Opens the app 12 times a day. His job: find high-commission deals before competitors do."
+              audienceLabel="Telegram · 28K members"
+              walletText={`₹${personas.ramesh.walletBalance.toLocaleString('en-IN')}`}
+              walletStatus={null}
+              cta="View as Ramesh"
+            />
+            <PersonaCard
+              onSelect={() => {
+                setPersona('monika');
+                setTab('home');
+              }}
+              initial="M"
+              chipColor="bg-rose-500"
+              name="Monika S."
+              segment="Emerging Earner"
+              body="Homemaker, day 6 on the app. Shared a few deals to WhatsApp family. Wants spending money of her own. Wondering if this actually works."
+              audienceLabel="WhatsApp · friends &amp; family"
+              walletText={`₹${personas.monika.walletBalance}`}
+              walletStatus="pending"
+              cta="View as Monika"
+            />
+          </div>
+        </section>
+
+        {/* Divider between Q1 and Q2 — ~60% of the content column, centered */}
+        <div className="w-full max-w-3xl my-12" aria-hidden="true">
+          <div className="w-3/5 mx-auto h-px bg-[#E5E7EB]" />
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-[11px] text-slate-500">
-          <span>Or jump straight to Anjali&apos;s public storefront:</span>
-          <a
-            href="/anjali"
-            className="font-mono font-semibold text-slate-900 underline decoration-dotted"
-          >
-            /anjali
-          </a>
-        </div>
+        {/* SECTION B — Q2 */}
+        <section className="w-full max-w-3xl">
+          <SectionLabel>Q2 · Instagram Creator Programme</SectionLabel>
+          <div className="text-center mt-4 mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">
+              An AI-native suite for Settled Niche Influencers.
+            </h2>
+            <p className="text-slate-600 text-sm md:text-base mt-2 leading-relaxed max-w-xl mx-auto">
+              Storefront, Auto-DM, and Reel Maker as one product. The Anjali experience
+              shows how Storefront and Auto-DM feel in practice. Reel Maker is detailed in
+              the written submission.
+            </p>
+          </div>
 
-        <div className="mt-6 text-center text-xs text-slate-400 max-w-md">
+          <div className="w-full max-w-[480px] mx-auto">
+            <PersonaCard
+              onSelect={() => {
+                setPersona('anjali');
+                setTab('home');
+              }}
+              initial="A"
+              chipColor="bg-indigo-600"
+              name="Anjali R."
+              segment="Settled Niche Influencer"
+              body="80K followers on Instagram. Pune. Personal-finance niche. Posts Reels weekly, uses Auto-DM to capture commenters into her storefront."
+              audienceLabel="Instagram · 80K followers"
+              walletText={`₹${personas.anjali.walletBalance.toLocaleString('en-IN')}`}
+              walletStatus="pending"
+              cta="View as Anjali"
+            />
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-[11px] text-slate-500">
+            <span>Or jump straight to Anjali&apos;s public storefront:</span>
+            <a
+              href="/anjali"
+              className="font-mono font-semibold text-slate-900 underline decoration-dotted"
+            >
+              /anjali
+            </a>
+          </div>
+        </section>
+
+        <div className="mt-16 text-center text-xs text-slate-400 max-w-md">
           Mock data. The architecture, reasoning, and metrics are in the written submission.
         </div>
       </div>
@@ -227,6 +266,16 @@ function PersonaCard({
         {cta} →
       </div>
     </button>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="text-center">
+      <span className="text-[11px] uppercase tracking-[0.18em] text-slate-500 font-semibold">
+        {children}
+      </span>
+    </div>
   );
 }
 
