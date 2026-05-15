@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { allDeals } from '@/lib/deals';
 import DealCard from '@/components/DealCard';
 import TopBar from '@/components/TopBar';
+import RameshShare from '@/app/screens/ramesh-share';
 import { Filter, ArrowUpDown, X } from 'lucide-react';
 
 type SortBy = 'commission' | 'freshness' | 'saturation' | 'gmvPerClick';
@@ -14,6 +15,18 @@ export default function RameshDiscovery() {
   const [activeFilters, setActiveFilters] = useState<string[]>([
     'Min 8% commission',
   ]);
+  // Single-deal share: opens the same flow as the Make Links tab, just
+  // pre-selected with one item. null = sheet closed.
+  const [shareDealId, setShareDealId] = useState<string | null>(null);
+
+  if (shareDealId) {
+    return (
+      <RameshShare
+        initialSelected={[shareDealId]}
+        onExit={() => setShareDealId(null)}
+      />
+    );
+  }
 
   const sorted = [...allDeals].sort((a, b) => {
     if (sortBy === 'commission') return b.profitPct - a.profitPct;
@@ -115,7 +128,12 @@ export default function RameshDiscovery() {
       {/* Deals list */}
       <div className="p-3 space-y-2">
         {sorted.map((deal) => (
-          <DealCard key={deal.id} deal={deal} variant="operator" />
+          <DealCard
+            key={deal.id}
+            deal={deal}
+            variant="operator"
+            onShare={() => setShareDealId(deal.id)}
+          />
         ))}
       </div>
     </div>

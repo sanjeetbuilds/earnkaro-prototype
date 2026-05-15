@@ -1,18 +1,36 @@
 'use client';
 
 import { useState } from 'react';
-import { rameshFeed } from '@/lib/deals';
+import { rameshFeed, allDeals, type Deal } from '@/lib/deals';
 import TopBar from '@/components/TopBar';
 import { Check, MessageCircle, Image as ImageIcon, Edit3, Eye, Lock } from 'lucide-react';
 
-export default function RameshShare() {
-  const deals = rameshFeed().slice(0, 6);
+type Props = {
+  // Pre-select these deal IDs when the flow opens. Used by single-deal share
+  // entry points (Home, Discovery) to start with one item already checked.
+  initialSelected?: string[];
+  // Provided when the flow is rendered as a sheet over another screen. The
+  // tab-level entry leaves this undefined and the flow renders inline.
+  onExit?: () => void;
+};
+
+export default function RameshShare({ initialSelected, onExit }: Props = {}) {
+  // Base feed for the multi-select list. If the caller pre-selected a deal
+  // that isn't in this slice, surface it at the top so the user can see what
+  // they're about to share.
+  const baseDeals = rameshFeed().slice(0, 6);
+  const baseIds = new Set(baseDeals.map((d) => d.id));
+  const extras: Deal[] = (initialSelected ?? [])
+    .filter((id) => !baseIds.has(id))
+    .map((id) => allDeals.find((d) => d.id === id))
+    .filter((d): d is Deal => Boolean(d));
+  const deals = [...extras, ...baseDeals].slice(0, 6);
+
+  const defaultSelected = [deals[0].id, deals[1].id, deals[2].id];
   const [selected, setSelected] = useState<Set<string>>(
-    new Set([deals[0].id, deals[1].id, deals[2].id])
+    new Set(initialSelected ?? defaultSelected),
   );
-  const [stage, setStage] = useState<'select' | 'preview' | 'posted'>(
-    'select'
-  );
+  const [stage, setStage] = useState<'select' | 'preview' | 'posted'>('select');
   const [channel, setChannel] = useState<'telegram' | 'whatsapp' | 'all'>('telegram');
 
   const toggle = (id: string) => {
@@ -33,7 +51,7 @@ export default function RameshShare() {
   if (stage === 'posted') {
     return (
       <div className="bg-slate-50 min-h-screen">
-        <TopBar variant="page" title="Posted" />
+        <TopBar variant="page" title="Posted" onBack={onExit} />
         <div className="p-6 pt-12 text-center">
           <div className="w-20 h-20 bg-[#1AB266] rounded-full mx-auto flex items-center justify-center mb-4">
             <Check className="w-10 h-10 text-white" strokeWidth={3} />
@@ -60,12 +78,16 @@ export default function RameshShare() {
 
           <button
             onClick={() => {
+              if (onExit) {
+                onExit();
+                return;
+              }
               setStage('select');
-              setSelected(new Set([deals[0].id, deals[1].id, deals[2].id]));
+              setSelected(new Set(defaultSelected));
             }}
             className="mt-6 text-[#1AB266] text-sm font-semibold"
           >
-            Post another batch →
+            {onExit ? 'Done' : 'Post another batch →'}
           </button>
         </div>
       </div>
@@ -173,7 +195,7 @@ export default function RameshShare() {
 
   return (
     <div className="bg-slate-50 min-h-screen">
-      <TopBar variant="page" title="Bulk share" />
+      <TopBar variant="page" title="Share" onBack={onExit} />
 
       {/* Channel picker */}
       <div className="bg-white px-4 py-3 border-b border-slate-100">

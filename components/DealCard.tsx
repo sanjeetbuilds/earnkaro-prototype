@@ -92,16 +92,13 @@ export default function DealCard({ deal, variant, onShare, onCopy }: Props) {
             </span>
           </div>
 
-          {/* Channel-aware share. Defaults to user's primary, but flexible */}
+          {/* Routes through the channel picker + preview flow (single-deal entry). */}
           <button
             onClick={onShare}
             className="w-full mt-2 bg-slate-900 text-white text-xs font-semibold py-1.5 rounded-md flex items-center justify-center gap-1.5"
           >
             <Share2 className="w-3 h-3" />
             Generate & share
-            <span className="text-[10px] text-slate-400 font-normal">
-              → Telegram
-            </span>
           </button>
         </div>
       </div>

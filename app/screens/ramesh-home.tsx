@@ -5,6 +5,7 @@ import { rameshFeed } from '@/lib/deals';
 import { personas } from '@/lib/personas';
 import DealCard from '@/components/DealCard';
 import TopBar from '@/components/TopBar';
+import RameshShare from '@/app/screens/ramesh-share';
 import { Pin, Zap, CheckSquare, Bell } from 'lucide-react';
 
 export default function RameshHome() {
@@ -12,6 +13,18 @@ export default function RameshHome() {
   const deals = rameshFeed();
   const [activeCategory, setActiveCategory] = useState<string>('Household');
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  // Single-deal share: same flow as the Make Links tab, pre-selected with one
+  // item. null = sheet closed.
+  const [shareDealId, setShareDealId] = useState<string | null>(null);
+
+  if (shareDealId) {
+    return (
+      <RameshShare
+        initialSelected={[shareDealId]}
+        onExit={() => setShareDealId(null)}
+      />
+    );
+  }
 
   const newDealsCount = deals.filter((d) => d.postedMinutesAgo < 30).length;
   const filtered = deals.filter((d) => d.category === activeCategory);
@@ -157,7 +170,11 @@ export default function RameshHome() {
                 )}
               </button>
               <div className={selected.has(deal.id) ? 'ml-1' : ''}>
-                <DealCard deal={deal} variant="operator" />
+                <DealCard
+                  deal={deal}
+                  variant="operator"
+                  onShare={() => setShareDealId(deal.id)}
+                />
               </div>
             </div>
           ))}
