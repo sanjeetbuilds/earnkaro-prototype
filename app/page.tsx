@@ -43,8 +43,8 @@ export default function Page() {
 
         {/* SECTION A — Q1 */}
         <section className="w-full max-w-3xl">
-          <SectionLabel>Q1 · Segmentation &amp; Personalization</SectionLabel>
-          <div className="text-center mt-4 mb-8">
+          <SectionLabel pill="Q1" category="Segmentation & Personalization" />
+          <div className="text-center mt-6 mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">
               Same app, two segments, two experiences.
             </h2>
@@ -88,15 +88,10 @@ export default function Page() {
           </div>
         </section>
 
-        {/* Divider between Q1 and Q2 — ~60% of the content column, centered */}
-        <div className="w-full max-w-3xl my-12" aria-hidden="true">
-          <div className="w-3/5 mx-auto h-px bg-[#E5E7EB]" />
-        </div>
-
         {/* SECTION B — Q2 */}
-        <section className="w-full max-w-3xl">
-          <SectionLabel>Q2 · Instagram Creator Programme</SectionLabel>
-          <div className="text-center mt-4 mb-8">
+        <section className="w-full max-w-3xl mt-32">
+          <SectionLabel pill="Q2" category="Instagram Creator Programme" />
+          <div className="text-center mt-6 mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">
               An AI-native suite for Settled Niche Influencers.
             </h2>
@@ -269,12 +264,15 @@ function PersonaCard({
   );
 }
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SectionLabel({ pill, category }: { pill: string; category: string }) {
   return (
     <div className="text-center">
-      <span className="text-[11px] uppercase tracking-[0.18em] text-slate-500 font-semibold">
-        {children}
+      <span className="inline-block px-4 py-1.5 bg-slate-900 text-white text-sm font-bold rounded-full">
+        {pill}
       </span>
+      <div className="mt-4 text-sm font-semibold uppercase tracking-[0.15em] text-gray-500">
+        {category}
+      </div>
     </div>
   );
 }
