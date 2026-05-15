@@ -155,7 +155,7 @@ function ReelPerformanceCard() {
           tone="muted"
         />
         <FunnelRow
-          label="Tapped your storefront link"
+          label="Tapped link"
           value={latestReel.storefrontClicks}
           tone="muted"
           dropFromPrev={latestReel.dmsSent}

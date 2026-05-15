@@ -33,7 +33,7 @@ export const latestReel: ReelMetrics = {
   comments: 412,
   dmTrigger: '"CARD"',
   dmsSent: 287,
-  storefrontClicks: 196,
+  storefrontClicks: 41,
   confirmedPurchases: 7,
   pendingEarnings: 2940,
 };
