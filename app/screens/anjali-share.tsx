@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { anjaliFeed } from '@/lib/deals';
 import TopBar from '@/components/TopBar';
 import {
+  Play,
   PlayCircle,
   Image as ImageIcon,
   MessageCircle,
@@ -146,20 +147,35 @@ export default function AnjaliShare() {
           </div>
 
           {format === 'reel' && (
-            <div
-              className={`aspect-[9/14] bg-gradient-to-br from-indigo-300 via-violet-300 to-blue-400 relative flex items-end p-4`}
-            >
-              <div className="bg-black/30 backdrop-blur-sm rounded-xl p-3 w-full text-white">
-                <div className="text-[11px] font-bold leading-snug">
-                  The SBI card I actually use for online shopping (full breakdown).
-                </div>
-                <div className="mt-2 inline-flex items-center gap-1 bg-white/20 px-2 py-0.5 rounded-full text-[9px] font-bold">
-                  Comment &quot;CARD&quot; for the link
-                </div>
-              </div>
-              <div className="absolute top-3 right-3 bg-white/90 text-slate-900 text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+            <div className="aspect-[9/14] bg-gradient-to-br from-indigo-300 via-violet-300 to-blue-400 relative overflow-hidden">
+              {/* Auto-DM chip (moved to top-left so the duration chip can sit top-right) */}
+              <div className="absolute top-3 left-3 bg-white/90 text-slate-900 text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 z-10">
                 <Wand2 className="w-2.5 h-2.5" />
                 Auto-DM ready
+              </div>
+
+              {/* Duration chip */}
+              <div className="absolute top-3 right-3 bg-black/70 text-white text-[11px] font-semibold px-2 py-0.5 rounded-full z-10 tabular-nums">
+                0:47
+              </div>
+
+              {/* Centered play affordance */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <Play
+                  className="w-12 h-12 text-white/50"
+                  fill="currentColor"
+                  strokeWidth={0}
+                />
+              </div>
+
+              {/* Bottom caption underlay — transparent → 30% black gradient fade */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/30 to-transparent px-4 pt-14 pb-4 text-white">
+                <div className="text-sm font-bold leading-snug drop-shadow-sm">
+                  The credit card I actually use for online shopping (full breakdown).
+                </div>
+                <div className="mt-2 inline-flex items-center gap-1 bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full text-[9px] font-bold">
+                  Comment &quot;CARD&quot; for the link
+                </div>
               </div>
             </div>
           )}
