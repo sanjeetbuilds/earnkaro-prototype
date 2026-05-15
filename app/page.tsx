@@ -120,14 +120,25 @@ export default function Page() {
             />
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-[11px] text-slate-500">
-            <span>Or jump straight to Anjali&apos;s public storefront:</span>
-            <a
-              href="/anjali"
-              className="font-mono font-semibold text-slate-900 underline decoration-dotted"
-            >
-              /anjali
-            </a>
+          <div className="mt-6 w-full max-w-[480px] mx-auto">
+            <div className="bg-gray-50 border border-slate-200 rounded-2xl p-6">
+              <div className="text-xs uppercase tracking-[0.15em] text-slate-500 font-semibold">
+                Public storefront
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-slate-900 mt-2 leading-tight">
+                See what Anjali&apos;s audience sees.
+              </h3>
+              <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                The storefront at /anjali is the consumer-facing surface. No login, no app.
+                This is what gets shared in her Instagram bio and Auto-DM replies.
+              </p>
+              <a
+                href="/anjali"
+                className="mt-5 block w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-sm transition-colors"
+              >
+                Open /anjali storefront →
+              </a>
+            </div>
           </div>
         </section>
 
