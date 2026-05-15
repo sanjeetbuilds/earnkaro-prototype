@@ -198,12 +198,12 @@ export default function AnjaliShare() {
             <div className="p-3 bg-slate-50">
               <div className="bg-[#E8F8E8] rounded-2xl rounded-bl-sm p-3 border border-emerald-100 max-w-[85%]">
                 <div className="text-[11px] text-slate-800 leading-relaxed">
-                  Hey 👋 just dropping the SBI card I keep mentioning, I use it for
-                  online shopping &amp; the Amazon voucher kicks in on first spend.
-                  Quick apply ↓
+                  Hey 👋 dropping the HDFC Millennia card I keep mentioning.
+                  5% cashback on Swiggy, Zomato, Amazon. ₹450 cashback on first
+                  spend. Quick apply ↓
                 </div>
                 <div className="text-[10px] text-blue-600 mt-2 underline">
-                  anjali.in/sbi
+                  anjali.in/hdfc
                 </div>
               </div>
               <div className="text-[9px] text-slate-400 mt-1 ml-1">
@@ -222,7 +222,7 @@ export default function AnjaliShare() {
               Your tracked link
             </div>
             <div className="text-xs text-blue-700 mt-0.5 underline truncate">
-              anjali.in/sbi
+              anjali.in/hdfc
             </div>
           </div>
           <button className="flex items-center gap-1 bg-slate-100 text-slate-700 text-[11px] font-semibold px-2.5 py-1.5 rounded-md">
